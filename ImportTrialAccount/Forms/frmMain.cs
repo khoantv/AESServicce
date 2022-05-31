@@ -295,6 +295,12 @@ namespace ImportTrialAccount.Forms
             frmImport.ShowDialog();
         }
 
+        private void insertSchoolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInsertSchool frmInsertSchool = new frmInsertSchool();
+            frmInsertSchool.ShowDialog();
+        }
+
         DataTable ReadExcel(string filePath, string sheetName)
         {
             DataTable dtTable = new DataTable();

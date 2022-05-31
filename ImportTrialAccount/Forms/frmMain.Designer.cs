@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
@@ -46,6 +46,7 @@
             this.resetPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setTrainingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateEmailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertTeacherTemplate2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAutoImport = new System.Windows.Forms.Button();
@@ -55,30 +56,30 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
-            this.insertTeacherTemplate2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertSchoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(23, 115);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
@@ -188,7 +189,8 @@
             this.resetPassToolStripMenuItem,
             this.setTrainingToolStripMenuItem,
             this.updateEmailToolStripMenuItem,
-            this.insertTeacherTemplate2ToolStripMenuItem});
+            this.insertTeacherTemplate2ToolStripMenuItem,
+            this.insertSchoolToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -220,6 +222,13 @@
             this.updateEmailToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.updateEmailToolStripMenuItem.Text = "Update Email";
             this.updateEmailToolStripMenuItem.Click += new System.EventHandler(this.updateEmailToolStripMenuItem_Click);
+            // 
+            // insertTeacherTemplate2ToolStripMenuItem
+            // 
+            this.insertTeacherTemplate2ToolStripMenuItem.Name = "insertTeacherTemplate2ToolStripMenuItem";
+            this.insertTeacherTemplate2ToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.insertTeacherTemplate2ToolStripMenuItem.Text = "Insert Teacher template 2";
+            this.insertTeacherTemplate2ToolStripMenuItem.Click += new System.EventHandler(this.insertTeacherTemplate2ToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
@@ -294,12 +303,12 @@
             this.lblError.Size = new System.Drawing.Size(0, 15);
             this.lblError.TabIndex = 5;
             // 
-            // insertTeacherTemplate2ToolStripMenuItem
+            // insertSchoolToolStripMenuItem
             // 
-            this.insertTeacherTemplate2ToolStripMenuItem.Name = "insertTeacherTemplate2ToolStripMenuItem";
-            this.insertTeacherTemplate2ToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.insertTeacherTemplate2ToolStripMenuItem.Text = "Insert Teacher template 2";
-            this.insertTeacherTemplate2ToolStripMenuItem.Click += new System.EventHandler(this.insertTeacherTemplate2ToolStripMenuItem_Click);
+            this.insertSchoolToolStripMenuItem.Name = "insertSchoolToolStripMenuItem";
+            this.insertSchoolToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.insertSchoolToolStripMenuItem.Text = "Insert School";
+            this.insertSchoolToolStripMenuItem.Click += new System.EventHandler(this.insertSchoolToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -366,5 +375,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setURLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem insertTeacherTemplate2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertSchoolToolStripMenuItem;
     }
 }

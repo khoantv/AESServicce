@@ -422,5 +422,53 @@ namespace ImportTrialAccount.Services
 
             return JsonConvert.DeserializeObject<ResponseObject<PhongTruongIdModel>>(result);
         }
+
+        public static async Task<ResponseObject<string>> GetSchoolCode(int? phongGDDTId, int typeId)
+        {
+            string urlApi = "api/School/GetSchoolCode?phongGDDTId=" + phongGDDTId + "&typeId=" + typeId;
+
+            var url = Path.Combine(urlRoot, urlApi);
+
+            using var client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var response = await client.GetAsync(url);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(result))
+            {
+                return null;
+            }
+
+            return JsonConvert.DeserializeObject<ResponseObject<string>>(result);
+        }
+
+        public static async Task<ResponseObject<CreateNewSchoolResponse>> CreateNewSchool(CreateNewSchoolRequest request)
+        {
+            string urlApi = "api/School/SchoolCreate";
+
+            var json = JsonConvert.SerializeObject(request);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = Path.Combine(urlRoot, urlApi);
+
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+
+            var response = await client.PostAsync(url, data);
+
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            if (string.IsNullOrEmpty(result))
+            {
+                return null;
+            }
+
+            var createNewSchoolResponse = JsonConvert.DeserializeObject<ResponseObject<CreateNewSchoolResponse>>(result);
+
+            return createNewSchoolResponse;
+        }
     }
 }

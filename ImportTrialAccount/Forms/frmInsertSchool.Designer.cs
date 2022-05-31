@@ -94,6 +94,7 @@
             this.btnExport.TabIndex = 58;
             this.btnExport.Text = "EXPORT";
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnImport
             // 
@@ -103,6 +104,7 @@
             this.btnImport.TabIndex = 59;
             this.btnImport.Text = "IMPORT";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnAutoImport_Click);
             // 
             // btnRead
             // 
@@ -112,6 +114,7 @@
             this.btnRead.TabIndex = 60;
             this.btnRead.Text = "READ FILE";
             this.btnRead.UseVisualStyleBackColor = true;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
             // btnOpen
             // 
@@ -121,6 +124,7 @@
             this.btnOpen.TabIndex = 61;
             this.btnOpen.Text = "OPEN";
             this.btnOpen.UseVisualStyleBackColor = true;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // txtOutput
             // 
@@ -192,6 +196,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmInsertSchool";
             this.Text = "frmInsertSchool";
+            this.Load += new System.EventHandler(this.frmInsertSchool_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

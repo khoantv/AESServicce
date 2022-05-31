@@ -251,5 +251,49 @@ namespace ImportTrialAccount.Services
                 workbook.Write(fs);
             }
         }
+
+        public static void Export2ExcelImportSchoolResult(string fileName, string sheetName, List<string> headerNames, List<SchoolInsertModel> schools)
+        {
+            // Lets converts our object data to Datatable for a simplified logic.
+            // Datatable is most easy way to deal with complex datatypes for easy reading and formatting.
+
+            var memoryStream = new MemoryStream();
+
+            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+            {
+                IWorkbook workbook = new XSSFWorkbook();
+                ISheet excelSheet = workbook.CreateSheet(sheetName);
+
+                List<string> columns = new List<string>();
+                IRow row = excelSheet.CreateRow(0);
+
+                headerNames.Add("Id Trường");
+                headerNames.Add("Code");
+                headerNames.Add("Kết quả");
+
+                int cellIndex = 0;
+                foreach (string name in headerNames)
+                {
+                    row.CreateCell(cellIndex).SetCellValue(name);
+                    cellIndex++;
+                }
+
+                int rowIndex = 1;
+                int colLength = headerNames.Count;
+
+                foreach (var gv in schools)
+                {
+                    row = excelSheet.CreateRow(rowIndex);
+                    for (cellIndex = 0; cellIndex < colLength; cellIndex++)
+                    {
+                        row.CreateCell(cellIndex).SetCellValue(gv[cellIndex]);
+                    }
+
+                    rowIndex++;
+                }
+
+                workbook.Write(fs);
+            }
+        }
     }
 }
