@@ -104,7 +104,7 @@
             this.btnImport.TabIndex = 59;
             this.btnImport.Text = "IMPORT";
             this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnAutoImport_Click);
+            this.btnImport.Click += new System.EventHandler(this.btnImport_ClickAsync);
             // 
             // btnRead
             // 

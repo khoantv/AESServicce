@@ -286,7 +286,7 @@ namespace ImportTrialAccount.Services
                     row = excelSheet.CreateRow(rowIndex);
                     for (cellIndex = 0; cellIndex < colLength; cellIndex++)
                     {
-                        row.CreateCell(cellIndex).SetCellValue(gv[cellIndex]);
+                        row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "");
                     }
 
                     rowIndex++;

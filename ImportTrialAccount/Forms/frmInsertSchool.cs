@@ -111,18 +111,68 @@ namespace ImportTrialAccount.Forms
             }
         }
 
+        private async void btnImport_ClickAsync(object sender, EventArgs e)
+        {
+            string code = string.Empty;
+
+            if (schools == null || schools.Count <= 0)
+            {
+                MessageBox.Show("Không có dữ liệu import!");
+                return;
+            }
+
+            int schoolNum = schools.Count;
+
+            for (int i = 0; i < schoolNum; i++)
+            {
+                var schoolCodeResult = await HTSService.GetSchoolCode(schools[i].IdPhong, schools[i].LoaiTruong);
+
+                if (schoolCodeResult != null && schoolCodeResult.status == "success" && schoolCodeResult.errors == null)
+                {
+                    code = schoolCodeResult.data;
+                }
+
+                var sc = new CreateNewSchoolRequest
+                {
+                    code = code,
+                    name = schools[i].TenTruong,
+                    educationDepartmentId = schools[i].IdSo,
+                    phongGDDTId = schools[i].IdPhong,
+                    typeId = schools[i].LoaiTruong
+                };
+
+                try
+                {
+                    var createNewSchoolResponse = await HTSService.CreateNewSchool(sc);
+
+                    if (createNewSchoolResponse != null && createNewSchoolResponse.status == "success" && createNewSchoolResponse.errors == null)
+                    {
+                        var schoolInserted = createNewSchoolResponse.data;
+                        schools[i].IdTruong = schoolInserted.schoolId;
+                        schools[i].Code = schoolInserted.code;
+                        schools[i].KetQua = "Thành Công";
+                    }
+                    else
+                    {
+                        schools[i].IdTruong = 0;
+                        schools[i].Code = "";
+                        schools[i].KetQua = "Thất Bại";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    schools[i].IdTruong = 0;
+                    schools[i].Code = "";
+                    schools[i].KetQua = "Thất Bại";
+                }
+            }
+
+            MessageBox.Show("Import Done!");
+        }
+
         private async void btnAutoImport_Click(object sender, EventArgs e)
         {
-            if (backgroundWorker1.IsBusy)
-            {
-                backgroundWorker1.CancelAsync();
-            }
-            else
-            {
-                progressBar1.Value = progressBar1.Minimum;
-                lblProgress.Text = "Run First Sheet";
-                backgroundWorker1.RunWorkerAsync();
-            }
+
         }
 
         private void btnExport_Click(object sender, EventArgs e)
