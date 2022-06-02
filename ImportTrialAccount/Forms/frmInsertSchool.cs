@@ -136,7 +136,7 @@ namespace ImportTrialAccount.Forms
                 {
                     schools[i].IdTruong = 0;
                     schools[i].Code = "";
-                    schools[i].KetQua = "Thất Bại";
+                    schools[i].KetQua = "Code không hợp lệ";
                 }
                 else
                 {
@@ -164,14 +164,14 @@ namespace ImportTrialAccount.Forms
                         {
                             schools[i].IdTruong = 0;
                             schools[i].Code = "";
-                            schools[i].KetQua = "Thất Bại";
+                            schools[i].KetQua = "Không tạo được tài khoản";
                         }
                     }
                     catch (Exception ex)
                     {
                         schools[i].IdTruong = 0;
                         schools[i].Code = "";
-                        schools[i].KetQua = "Thất Bại";
+                        schools[i].KetQua = ex.Message;
                     }
                 }
             }
