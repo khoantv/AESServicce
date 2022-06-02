@@ -132,38 +132,47 @@ namespace ImportTrialAccount.Forms
                     code = schoolCodeResult.data;
                 }
 
-                var sc = new CreateNewSchoolRequest
+                if (string.IsNullOrEmpty(code))
                 {
-                    code = code,
-                    name = schools[i].TenTruong,
-                    educationDepartmentId = schools[i].IdSo,
-                    phongGDDTId = schools[i].IdPhong,
-                    typeId = schools[i].LoaiTruong
-                };
-
-                try
+                    schools[i].IdTruong = 0;
+                    schools[i].Code = "";
+                    schools[i].KetQua = "Thất Bại";
+                }
+                else
                 {
-                    var createNewSchoolResponse = await HTSService.CreateNewSchool(sc);
-
-                    if (createNewSchoolResponse != null && createNewSchoolResponse.status == "success" && createNewSchoolResponse.errors == null)
+                    var sc = new CreateNewSchoolRequest
                     {
-                        var schoolInserted = createNewSchoolResponse.data;
-                        schools[i].IdTruong = schoolInserted.schoolId;
-                        schools[i].Code = schoolInserted.code;
-                        schools[i].KetQua = "Thành Công";
+                        code = code,
+                        name = schools[i].TenTruong,
+                        educationDepartmentId = schools[i].IdSo,
+                        phongGDDTId = schools[i].IdPhong,
+                        typeId = schools[i].LoaiTruong
+                    };
+
+                    try
+                    {
+                        var createNewSchoolResponse = await HTSService.CreateNewSchool(sc);
+
+                        if (createNewSchoolResponse != null && createNewSchoolResponse.status == "success" && createNewSchoolResponse.errors == null)
+                        {
+                            var schoolInserted = createNewSchoolResponse.data;
+                            schools[i].IdTruong = schoolInserted.schoolId;
+                            schools[i].Code = schoolInserted.code;
+                            schools[i].KetQua = "Thành Công";
+                        }
+                        else
+                        {
+                            schools[i].IdTruong = 0;
+                            schools[i].Code = "";
+                            schools[i].KetQua = "Thất Bại";
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
                         schools[i].IdTruong = 0;
                         schools[i].Code = "";
                         schools[i].KetQua = "Thất Bại";
                     }
-                }
-                catch (Exception ex)
-                {
-                    schools[i].IdTruong = 0;
-                    schools[i].Code = "";
-                    schools[i].KetQua = "Thất Bại";
                 }
             }
 
