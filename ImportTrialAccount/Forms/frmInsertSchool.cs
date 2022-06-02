@@ -104,7 +104,7 @@ namespace ImportTrialAccount.Forms
                         dataGridView1.DataSource = dt;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Không đọc được file.");
                 }
@@ -167,7 +167,7 @@ namespace ImportTrialAccount.Forms
                 }
             }
 
-            MessageBox.Show("Import Done!");
+            Export();
         }
 
         private async void btnAutoImport_Click(object sender, EventArgs e)
@@ -177,19 +177,7 @@ namespace ImportTrialAccount.Forms
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = @"C:\";
-            saveFileDialog1.Title = "Save text Files";
-            saveFileDialog1.DefaultExt = "xlsx";
-            saveFileDialog1.Filter = "Excel files (*.xls)|*.xlsx|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                ExcelService.Export2ExcelImportSchoolResult(saveFileDialog1.FileName, sheetName, headerNames, schools);
-                MessageBox.Show("Saved!");
-            }
+            Export();
         }
         #endregion
 
@@ -404,6 +392,40 @@ namespace ImportTrialAccount.Forms
                     schools[i].Code = "";
                     schools[i].KetQua = "Thất Bại";
                 }
+            }
+        }
+
+        public void Export()
+        {
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //saveFileDialog1.InitialDirectory = @"C:\";
+            //saveFileDialog1.Title = "Save text Files";
+            //saveFileDialog1.DefaultExt = "xlsx";
+            //saveFileDialog1.Filter = "Excel files (*.xls)|*.xlsx|All files (*.*)|*.*";
+            //saveFileDialog1.FilterIndex = 2;
+            //saveFileDialog1.RestoreDirectory = true;
+
+            //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            //{
+            //    ExcelService.Export2ExcelImportSchoolResult(saveFileDialog1.FileName, sheetName, headerNames, schools);
+            //    MessageBox.Show("Saved!");
+            //}
+
+            string filePathOutput = txtOutput.Text.Trim();
+            if (!Directory.Exists(filePathOutput))
+            {
+                Directory.CreateDirectory(filePathOutput);
+            }
+
+            try
+            {
+                filePathOutput = Path.Combine(filePathOutput, sheetName + ".xlsx");
+                ExcelService.Export2ExcelImportSchoolResult(filePathOutput, sheetName, headerNames, schools);
+                MessageBox.Show("Exported");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         #endregion
