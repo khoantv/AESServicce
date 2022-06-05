@@ -5,6 +5,7 @@ using NPOI.XSSF.UserModel;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Windows.Forms;
 
 namespace ImportTrialAccount.Services
 {
@@ -271,32 +272,39 @@ namespace ImportTrialAccount.Services
                 headerNames.Add("Code");
                 headerNames.Add("Kết quả");
 
-                int cellIndex = 0;
-                foreach (string name in headerNames)
+                try
                 {
-                    row.CreateCell(cellIndex).SetCellValue(name);
-                    cellIndex++;
-                }
-
-                int rowIndex = 1;
-                int colLength = headerNames.Count;
-
-                foreach (var gv in schools)
-                {
-                    row = excelSheet.CreateRow(rowIndex);
-                    for (cellIndex = 0; cellIndex < colLength; cellIndex++)
+                    int cellIndex = 0;
+                    foreach (string name in headerNames)
                     {
-                        try
-                        {
-                            row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "");
-                        }
-                        catch (System.Exception)
-                        {
-                        }
-
+                        row.CreateCell(cellIndex).SetCellValue(name);
+                        cellIndex++;
                     }
 
-                    rowIndex++;
+                    int rowIndex = 1;
+                    int colLength = headerNames.Count;
+
+                    foreach (var gv in schools)
+                    {
+                        row = excelSheet.CreateRow(rowIndex);
+                        for (cellIndex = 0; cellIndex < colLength; cellIndex++)
+                        {
+                            try
+                            {
+                                row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "");
+                            }
+                            catch (System.Exception)
+                            {
+                            }
+
+                        }
+
+                        rowIndex++;
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
 
                 workbook.Write(fs);

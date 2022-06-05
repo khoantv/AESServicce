@@ -260,25 +260,40 @@ namespace ImportTrialAccount.Services
                 headerNames.Add("Teacher Id");
                 headerNames.Add("Kết quả");
 
-                int cellIndex = 0;
-                foreach (string name in headerNames)
+                try
                 {
-                    row.CreateCell(cellIndex).SetCellValue(name);
-                    cellIndex++;
-                }
-
-                int rowIndex = 1;
-                int colLength = headerNames.Count;
-
-                foreach (var gv in giaoViens)
-                {
-                    row = excelSheet.CreateRow(rowIndex);
-                    for (cellIndex = 0; cellIndex < colLength; cellIndex++)
+                    int cellIndex = 0;
+                    foreach (string name in headerNames)
                     {
-                        row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "Không lấy được dữ liệu");
+                        row.CreateCell(cellIndex).SetCellValue(name);
+                        cellIndex++;
                     }
 
-                    rowIndex++;
+                    int rowIndex = 1;
+                    int colLength = headerNames.Count;
+
+                    foreach (var gv in giaoViens)
+                    {
+                        row = excelSheet.CreateRow(rowIndex);
+                        for (cellIndex = 0; cellIndex < colLength; cellIndex++)
+                        {
+                            try
+                            {
+                                row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "Không lấy được dữ liệu");
+                            }
+                            catch (System.Exception)
+                            {
+
+                            }
+
+                        }
+
+                        rowIndex++;
+                    }
+                }
+                catch (System.Exception)
+                {
+
                 }
 
                 workbook.Write(fs);
