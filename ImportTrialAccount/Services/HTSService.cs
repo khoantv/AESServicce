@@ -231,7 +231,14 @@ namespace ImportTrialAccount.Services
                     row = excelSheet.CreateRow(rowIndex);
                     for (cellIndex = 0; cellIndex < colLength; cellIndex++)
                     {
-                        row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "Không lấy được dữ liệu");
+                        try
+                        {
+                            row.CreateCell(cellIndex).SetCellValue(gv[cellIndex] ?? "Không lấy được dữ liệu");
+                        }
+                        catch (System.Exception)
+                        {
+
+                        }
                     }
 
                     rowIndex++;
@@ -265,7 +272,15 @@ namespace ImportTrialAccount.Services
                     int cellIndex = 0;
                     foreach (string name in headerNames)
                     {
-                        row.CreateCell(cellIndex).SetCellValue(name);
+                        try
+                        {
+                            row.CreateCell(cellIndex).SetCellValue(name);
+                        }
+                        catch (System.Exception)
+                        {
+
+                        }
+
                         cellIndex++;
                     }
 

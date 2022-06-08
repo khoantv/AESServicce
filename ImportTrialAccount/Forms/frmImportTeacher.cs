@@ -97,7 +97,13 @@ namespace ImportTrialAccount.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string mess = ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mess += " " + ex.InnerException.Message;
+                    }
+
+                    MessageBox.Show(mess);
                 }
             }
             else

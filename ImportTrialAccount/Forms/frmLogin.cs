@@ -20,16 +20,24 @@ namespace ImportTrialAccount.Forms
             string tenDN = txtTenDangNhap.Text.Trim();
             string mk = txtMatKhau.Text.Trim();
 
-            var loginResponse = await HTSService.LoginAsync(tenDN, mk);
+            try
+            {
+                var loginResponse = await HTSService.LoginAsync(tenDN, mk);
 
-            if (loginResponse.status == "success" && loginResponse.errors == null)
-            {
-                this.Close();
+                if (loginResponse.status == "success" && loginResponse.errors == null)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("login Failed!");
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                MessageBox.Show("login Failed!");
+                MessageBox.Show(ex.Message);
             }
+
         }
     }
 }
