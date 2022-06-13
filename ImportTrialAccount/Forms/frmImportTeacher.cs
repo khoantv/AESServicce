@@ -289,11 +289,11 @@ namespace ImportTrialAccount.Forms
 
                     TeacherInsertModel.STT = (row.GetCell(0) != null ? int.Parse(row.GetCell(0).ToString()) : 0);
                     TeacherInsertModel.TenSo = (row.GetCell(1) != null ? row.GetCell(1).ToString() : string.Empty);
-                    TeacherInsertModel.IdSo = (row.GetCell(2) != null ? row.GetCell(2).ToString().Trim() : string.Empty);
+                    TeacherInsertModel.IdSo = (row.GetCell(2) != null ? row.GetCell(2).ToString().Trim() : "0");
                     TeacherInsertModel.TenPhong = (row.GetCell(3) != null ? row.GetCell(3).ToString() : string.Empty);
-                    TeacherInsertModel.IdPhong = (row.GetCell(4) != null ? row.GetCell(4).ToString().Trim() : string.Empty);
+                    TeacherInsertModel.IdPhong = (row.GetCell(4) != null ? row.GetCell(4).ToString().Trim() : "0");
                     TeacherInsertModel.TenTruong = (row.GetCell(5) != null ? row.GetCell(5).ToString() : string.Empty);
-                    TeacherInsertModel.IdTruong = (row.GetCell(6) != null ? row.GetCell(6).ToString().Trim() : string.Empty);
+                    TeacherInsertModel.IdTruong = (row.GetCell(6) != null ? row.GetCell(6).ToString().Trim() : "0");
                     TeacherInsertModel.TenTaiKhoan = (row.GetCell(7) != null ? row.GetCell(7).ToString().Trim() : string.Empty);
                     TeacherInsertModel.MatKhau = (row.GetCell(8) != null ? row.GetCell(8).ToString().Trim() : string.Empty);
                     TeacherInsertModel.HoTen = (row.GetCell(9) != null ? row.GetCell(9).ToString().Trim() : string.Empty);
