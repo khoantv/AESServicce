@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -324,7 +323,7 @@ namespace ImportTrialAccount.Forms
 
         async Task ImportDataAsync()
         {
-            int? educationDepartmentId = 0, phongId = 0, schoolId = 0;
+            int educationDepartmentId = 0, phongId = 0, schoolId = 0;
             if (!isAllowCheck)
             {
                 return;
@@ -340,24 +339,9 @@ namespace ImportTrialAccount.Forms
 
             for (int i = 0; i < gvNum; i++)
             {
-                var educationDepartment = educationDepartments.FirstOrDefault(ed => ed.Code == giaoViens[i].IdSo);
-
-                if (educationDepartment == null)
-                {
-                    educationDepartmentId = 0;
-                }
-                else
-                {
-                    educationDepartmentId = educationDepartment.EducationDepartmentId;
-                }
-
-                var phongTruong = await HTSService.GetPhongSchoolId(giaoViens[i].IdPhong, giaoViens[i].IdTruong);
-
-                if (phongTruong != null && phongTruong.status == "success" && phongTruong.errors == null)
-                {
-                    phongId = phongTruong.data.PhongId;
-                    schoolId = phongTruong.data.SchoolId;
-                }
+                int.TryParse(giaoViens[i].IdSo, out educationDepartmentId);
+                int.TryParse(giaoViens[i].IdPhong, out phongId);
+                int.TryParse(giaoViens[i].IdTruong, out schoolId);
 
                 var gv = new CreateNewTeacherRequest
                 {
@@ -365,8 +349,8 @@ namespace ImportTrialAccount.Forms
                     name = giaoViens[i].HoTen,
                     PassWord = giaoViens[i].MatKhau,
                     educationDepartmentId = educationDepartmentId,
-                    phongGDDTId = phongId ?? 0,
-                    schoolId = schoolId ?? 0,
+                    phongGDDTId = phongId,
+                    schoolId = schoolId,
                     email = giaoViens[i].Email,
                     phoneNumber = giaoViens[i].SoDienThoai
                 };
